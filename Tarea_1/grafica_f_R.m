@@ -1,0 +1,1 @@
+## Gráfica de f(R)
