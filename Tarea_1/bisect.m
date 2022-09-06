@@ -44,4 +44,4 @@ root = xr; fx = func(xr, varargin{:});
 
 end
 fprintf("La raíz por el método de bisección aproximada es:");
-[x,fx,ea,iter]=bisect(f,2,3,0.0001,100)
+[x,fx,ea,iter]=bisect(f_R,2,3,0.0001,100)
