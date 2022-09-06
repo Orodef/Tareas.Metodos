@@ -46,3 +46,11 @@ while (1)
 end                                                           %llega al error deseado interrunpe el ciclo
 root = xr; fx = func(xr, varargin{:});
 
+%% Llamado de la función
+%usando la función especificada
+
+%Primeramente se define la función de términos de R, con este argumento faltante
+f = @(R)(1.129241*10^-3)+(2.341077*10^-3)*log(R)+(8.775468*10^-8)*(log(R))^3-(1/291.1);
+
+%Luego se llama a la función de bisección para obtener la raíz
+bisect(f,2,3,0.0001,100)
