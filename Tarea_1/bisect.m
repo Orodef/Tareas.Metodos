@@ -1,4 +1,4 @@
-## Función para bisección
+%% Función para bisección
 
 function [root,fx,ea,iter]=bisect(func,xl,xu,es,maxit,varargin)
 % bisect: root location zeroes
@@ -18,30 +18,31 @@ function [root,fx,ea,iter]=bisect(func,xl,xu,es,maxit,varargin)
 
 
 if nargin<3,error('at least 3 input arguments required'),end  %Verifica que haya los 3 argumentos mínimos
-test = func(xl,varargin{:})*func(xu,varargin{:});             %
-if test>0,error('no sign change'),end
-if nargin<4|isempty(es), es=0.0001;end
-if nargin<5|isempty(maxit), maxit=50;end
+test = func(xl,varargin{:})*func(xu,varargin{:});             %Calcula test, siendo la función evaluada en xl y xu 
+if test>0,error('no sign change'),end                         %Verifica cambio de signo
+if nargin<4|isempty(es), es=0.0001;end                        %Si no es especifica error aprox., se asume 0.0001%
+if nargin<5|isempty(maxit), maxit=50;end                      %Si no es especifica num. de iteraciones, se asumen 50
 
-iter = 0; xr = xl; ea = 100;
+iter = 0;                                                     %Define la iteración inicial en 0
+xr = xl;                                                      %Define xr inicial en xl
+ea = 100;                                                     %Define error en 100%
 
 while (1)
-  xrold = xr;
-  xr = (xl + xu)/2;
-  iter = iter + 1;
-  if xr ~= 0,ea = abs((xr - xrold)/xr) * 100;end
-  test = func(xl,varargin{:})*func(xr,varargin{:});
+  xrold = xr;                                                 %Redefine el xr anterior
+  xr = (xl + xu)/2;                                           %Calcula el nuevo xr
+  iter = iter + 1;                                            %Cuenta la itearción actual
+  if xr ~= 0,ea = abs((xr - xrold)/xr) * 100;end              %Si xr es diferente de 0, calcula el error aprox.
+  test = func(xl,varargin{:})*func(xr,varargin{:});           %Recalcula test, siendo la función evaluada en xl y xu
 
-  if test < 0
-    xu = xr;
-  elseif test > 0
-    xl = xr;
+  if test < 0                                                 %Si las evaluaciones son menores que 0
+    xu = xr;                                                  %sobreescribe xu
+  elseif test > 0                                             %Si las evaluaciones son mayores que 0
+    xl = xr;                                                  %sobreescribe xl
   else
-    ea = 0;
+    ea = 0;                                                   %Si no el error aprox. es cero
   end
 
-  if ea <= es | iter >= maxit,break,end
-end
+  if ea <= es | iter >= maxit,break,end                       %Si llegaga al número máx de iteraciones o se 
+end                                                           %llega al error deseado interrunpe el ciclo
 root = xr; fx = func(xr, varargin{:});
 
-## Llamado de la función
