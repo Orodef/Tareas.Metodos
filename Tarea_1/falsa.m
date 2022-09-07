@@ -47,5 +47,5 @@ while (1)
   end
 
 
-  fprintf("La raíz por el método de falsa posición aproximada es:");
+  fprintf("Raíz por método de falsa posición es \n");
   [x,fx,ea,iter]=falseposition(f_R,2,3,0.00001,100)
