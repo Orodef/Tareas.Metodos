@@ -47,8 +47,8 @@ root = xr; fx = func(xr, varargin{:});
 
 end
 
-%% Llamado de la función
-%usando la función especificada
-fprintf("La raíz por el método de bisección aproximada es:");
-[x,fx,ea,iter]=bisect(f_R,2,3,0.0001,100)
+## Llamado de la función
+#usando la función especificada (f_R)
+fprintf("Raíz por método de bisección es: \n");
+[R,fR,ea,iter]=bisect(f_R,2,3,0.0001,100)
 
